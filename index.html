@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CUTM</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Checkbox for sidebar toggle -->
+  <input type="checkbox" id="check">
+  <label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
+
+  <!-- Sidebar Menu -->
+  <div class="sidebar">
+    <header>Meniu</header>
+    <a href="informatia.html" class="active">
+      <i class="fas fa-qrcode"></i>
+      <span>Despre</span>
+    </a>
+    <a href="exemple.html">
+      <i class="fas fa-link"></i>
+      <span>Exemple</span>
+    </a>
+    <a href="formule.html">
+      <i class="fas fa-stream"></i>
+      <span>Formule</span>
+    </a>
+    <a href="joaca.html">
+      <i class="fas fa-calendar"></i>
+      <span>Joaca</span>
+    </a>
+    <a href="noi.html">
+      <i class="far fa-question-circle"></i>
+      <span>Noi</span>
+    </a>
+  </div>
+
+  <!-- Main content frame -->
+  <div class="frame">
+    <h2>CUTM</p2>
+    <h2>A elaborat:</h2>
+    <p><strong>Țîran Anton</strong> </p>
+    <p><strong>Colesnicenco Alexandr</strong></p>
+    <br>
+    <p>Acesta este un site dedicat prezentării și învățării conceptelor matematice, cu exemple și formule.</p>
+  </div>
+
+  <!-- JavaScript to toggle sidebar visibility -->
+  <script>
+    const checkBox = document.getElementById('check');
+    const sidebar = document.querySelector('.sidebar');
+    checkBox.addEventListener('change', () => {
+      sidebar.classList.toggle('active', checkBox.checked);
+    });
+  </script>
+</body>
+</html>

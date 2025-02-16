@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Teorema lui Pitagora.</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #e8d1ff;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar > a.active,.sidebar > a:hover:nth-child(even) {
+            --accent-color: #c1b1f7;
+            --gradient-color: #7b69bb;
+        }
+        #game {
+            width: 800px;
+            height: 600px;
+            background: #d6adff;
+            border: 1px solid #000;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+        #dialogue {
+            margin: 20px 0;
+        }
+        .choices {
+            display: flex;
+            flex-direction: column;
+        }
+        .choice {
+            margin: 5px 0;
+            padding: 10px;
+        }
+        .sidebar > a.active,.sidebar > a:hover:nth-child(even) {
+            --accent-color: #c1b1f7;
+            --gradient-color: #7b69bb;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="dialogue"></div>
+        <div class="choices" id="choices"></div>
+    </div>
+    <script>
+        const scenes = {
+            start: {
+                text: "Aflați cum i-a venit lui Pitagora ideea pentru teorema și treceți prin mai multe niveluri cu sarcini. Sunteți gata să începeți?",
+                choices: [
+                    { text: "Hai să începem!", nextScene: 'pre_story' },
+                    { text: "Nu, nu sunt pregătit.", nextScene: 'end' }
+                ]
+            },
+            pre_story: {
+                text: "Cu mult timp în urmă în Grecia Antică a trăit un mare matematician pe nume Pitagora. Era cunoscut pentru abilitățile sale mentale remarcabile și pentru dorința de a înțelege secretele universului. Într-o zi, în timp ce observa minunile arhitecturale ale Greciei, a observat ceva uimitor la triunghiuri dreptunghiulare.",
+                choices: [
+                    { text: "Ce anume el a observat?", nextScene: 'discovery' }
+                ]
+            },
+            discovery: {
+                text: "Pitagora a observat o regularitate: în triunghiurile dreptunghice suma pătratelor lungimii celor două catete este întotdeauna egală cu pătratul lungimii ipotenuzei. Această descoperire l-a impresionat, și și-a dedicat viața demonstrării acestei teorii, care a fost ulterior denumită Teorema lui Pitagora.",
+                choices: [
+                    { text: "Continuă", nextScene: 'introduction' }
+                ]
+            },
+            introduction: {
+                text: "Acum că știm povestea de dinainte, să aplicăm Teorema lui Pitagora în practică. Avem un triunghi cu catetele de lungime 3 și 4. Care este lungimea ipotenuzei?",
+                choices: [
+                    { text: "5", nextScene: 'level1_correct' },
+                    { text: "6", nextScene: 'level1_incorrect' },
+                    { text: "7", nextScene: 'level1_incorrect' }
+                ]
+            },
+            level1_correct: {
+                text: "Corect! Ipotenuza este 5, deoarece 3^2 + 4^2 = 9 + 16 = 25, iar √25 = 5. Bravo! Să trecem la următorul nivel.",
+                choices: [
+                    { text: "Să mergem!", nextScene: 'level2' }
+                ]
+            },
+            level1_incorrect: {
+                text: "Greșit. Hai să încercăm din nou. Care este lungimea ipotenuzei, dacă catetele sunt de 3 și 4?",
+                choices: [
+                    { text: "5", nextScene: 'level1_correct' },
+                    { text: "6", nextScene: 'level1_incorrect' },
+                    { text: "7", nextScene: 'level1_incorrect' }
+                ]
+            },
+            level2: {
+                text: "Acum avem un triunghi cu catetele de lungime 5 și 12. Care este lungimea ipotenuzei?",
+                choices: [
+                    { text: "13", nextScene: 'level2_correct' },
+                    { text: "14", nextScene: 'level2_incorrect' },
+                    { text: "15", nextScene: 'level2_incorrect' }
+                ]
+            },
+            level2_correct: {
+                text: "Foarte bine! Ipotenuza este 13, deoarece 5^2 + 12^2 = 25 + 144 = 169, iar √169 = 13. Continuăm!",
+                choices: [
+                    { text: "Următorul nivel", nextScene: 'level3' }
+                ]
+            },
+            level2_incorrect: {
+                text: "Greșit. Haideți să încercăm din nou. Care este lungimea ipotenuzei, dacă catetele sunt de 5 și 12?",
+                choices: [
+                    { text: "13", nextScene: 'level2_correct' },
+                    { text: "14", nextScene: 'level2_incorrect' },
+                    { text: "15", nextScene: 'level2_incorrect' }
+                ]
+            },
+            level3: {
+                text: "Avem un triunghi cu catetele de lungime 8 și 15. Care este lungimea ipotenuzei?",
+                choices: [
+                    { text: "17", nextScene: 'level3_correct' },
+                    { text: "18", nextScene: 'level3_incorrect' },
+                    { text: "19", nextScene: 'level3_incorrect' }
+                ]
+            },
+            level3_correct: {
+                text: "Felicitări! Ipotenuza este 17, deoarece 8^2 + 15^2 = 64 + 225 = 289, iar √289 = 17. Ai terminat toate nivelurile! Acum știi cum să aplici Teorema lui Pitagora în practică.",
+                choices: [
+                    { text: "Întoarce-te la început", nextScene: 'start' }
+                ]
+            },
+            level3_incorrect: {
+                text: "Greșit. Hai să încercăm încă o dată. Care este lungimea ipotenuzei, dacă catetele sunt de 8 și 15?",
+                choices: [
+                    { text: "17", nextScene: 'level3_correct' },
+                    { text: "18", nextScene: 'level3_incorrect' },
+                    { text: "19", nextScene: 'level3_incorrect' }
+                ]
+            },
+            end: {
+                text: "Mulțumim pentru joc! Sperăm că ți-a plăcut să înveți despre Teorema lui Pitagora. La revedere!",
+                choices: [
+                    { text: "Începe din nou", nextScene: 'start' }
+                ]
+            }
+        };
+
+        function renderScene(sceneId) {
+            const scene = scenes[sceneId];
+            const dialogueElement = document.getElementById('dialogue');
+            const choicesElement = document.getElementById('choices');
+
+            dialogueElement.textContent = scene.text;
+            choicesElement.innerHTML = '';
+
+            scene.choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.textContent = choice.text;
+                button.classList.add('choice');
+                button.addEventListener('click', () => {
+                    renderScene(choice.nextScene);
+                });
+                choicesElement.appendChild(button);
+            });
+        }
+
+        renderScene('start');
+    </script>
+</body>
+</html>
